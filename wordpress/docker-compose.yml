@@ -1,0 +1,26 @@
+version: '3'
+services:
+  wp:
+    image: wordpress
+    depends_on:
+    - db
+    restart: always
+    volumes:
+    - ./wp-data:/var/www/html
+    ports:
+    - "80:80"
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_DATABASE: wp
+    volumes:
+    - ./db:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+    - "8080:8080"
