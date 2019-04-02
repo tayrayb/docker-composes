@@ -8,7 +8,7 @@ services:
     volumes:
     - ./wp-data:/var/www/html
     ports:
-    - "80:80"
+    - "80:80" #HTTP Port
   db:
     image: mariadb
     restart: always
@@ -23,4 +23,10 @@ services:
     image: adminer
     restart: always
     ports:
-    - "8080:8080"
+    - "8080:8080" #Adminer Port
+networks: 
+  default:
+    ipam:
+      driver: default
+      config: 
+      - subnet: "172.0.0.0/24" #Subnet for internal network
