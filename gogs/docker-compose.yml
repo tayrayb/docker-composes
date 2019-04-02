@@ -1,0 +1,29 @@
+# Light Personal Git Server
+version: '3'
+services:
+  gogs:
+    container_name: gogs
+    image: gogs/gogs
+    ports:
+    - "10022:22" #SSH
+    - "80:3000"  #HTTP
+    volumes:
+    - ./data:/data
+  db:
+    container_name: mariadb
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes: 
+    - ./db:/var/lib/mysql
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+    - "8080:8080" #Adminer Port
+networks: 
+  default:
+    ipam:
+      driver: default
+      config: 
+      - subnet: "172.0.0.0/24" #Subnet for internal network
