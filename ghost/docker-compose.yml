@@ -1,0 +1,10 @@
+# Ghost Blogging
+version: '3'
+services:
+  ghost:
+    image: ghost:alpine
+    container_name: ghost
+    ports: 
+    - "80:2368" #HTTP port
+    volumes: 
+    - ./ghost:/var/lib/ghost/content
