@@ -1,0 +1,9 @@
+version: '3'
+services:
+  vscode:
+    image: codercom/code-server
+    ports:
+    - "80:8443"
+    volumes: 
+    - ./data:/root/project
+    command: code-server --no-auth
